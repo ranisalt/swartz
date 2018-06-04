@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "swartz"
+version = "0.1.0"
+description = ""
+authors = ["Ranieri Althoff <ranisalt@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.5"

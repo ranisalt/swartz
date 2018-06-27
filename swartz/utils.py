@@ -24,6 +24,7 @@ def modular_inverse(a: int, n: int) -> int:
     return x % n
 
 
+# Unused for generating primes, it's as fast as MR
 def fermat(n: int, k: int = 100) -> bool:
     """Tests whether n is a probable prime with Fermat primality test
     >>> fermat(567)
@@ -90,7 +91,7 @@ def generate_prime(length: int) -> int:
     """
     while True:
         p = (2 ** (length - 1)) | random.getrandbits(length - 1) | 1
-        if fermat(p) and miller_rabin(p):
+        if miller_rabin(p):
             return p
 
 

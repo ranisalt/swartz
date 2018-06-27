@@ -6,6 +6,9 @@ authors = ["Ranieri Althoff <ranisalt@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "*"
+dataclasses = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.5"
+pytest-cov = "^2.5"
+pytest-flake8 = "^1.0"

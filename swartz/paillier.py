@@ -8,9 +8,19 @@ DEFAULT_KEYSIZE = 2048
 
 
 @dataclass
-class KeyPair:
+class PublicKey:
     n: int
     g: int
+
+    def encrypt(self, message: int) -> int:
+        n, g = self.n, self.g
+        r = random.randrange(1, n)
+        mod = n ** 2
+        return (pow(g, message, mod) * pow(r, n, mod)) % mod
+
+
+@dataclass
+class KeyPair(PublicKey):
     λ: int
     µ: int
 
@@ -18,11 +28,9 @@ class KeyPair:
         n, λ, µ = self.n, self.λ, self.µ
         return ((pow(cipher, λ, n ** 2) - 1) // n * µ) % n
 
-    def encrypt(self, message: int) -> int:
-        n, g = self.n, self.g
-        r = random.randrange(1, n)
-        mod = n ** 2
-        return (pow(g, message, mod) * pow(r, n, mod)) % mod
+    @property
+    def public_key(self) -> PublicKey:
+        return PublicKey(self.n, self.g)
 
 
 def generate_keypair(length: int = DEFAULT_KEYSIZE) -> KeyPair:
